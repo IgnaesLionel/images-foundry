@@ -9,10 +9,10 @@ app.get("/", (req, res) => {
 });
 
 app.get("/og-image", async (req, res) => {
-  const canvas = createCanvas(1280, 630); // create
+  const canvas = createCanvas(7429, 10346); // create
   const ctx = canvas.getContext("2d");
 
-  const bgImage = await loadImage("./bird.jpg");
+  const bgImage = await loadImage("./tree.jpg");
 
   // center fill
   const hRatio = canvas.width / bgImage.width;
@@ -21,7 +21,7 @@ app.get("/og-image", async (req, res) => {
   const centerShift_x = (canvas.width - bgImage.width * ratio) / 2;
   const centerShift_y = (canvas.height - bgImage.height * ratio) / 2;
 
-  function roundedRect(ctx, x, y, w, h, r) {
+  /*   function roundedRect(ctx, x, y, w, h, r) {
     if (w < 2 * r) r = w / 2;
     if (h < 2 * r) r = h / 2;
 
@@ -33,7 +33,7 @@ app.get("/og-image", async (req, res) => {
     ctx.arcTo(x, y, x + w, y, r);
     ctx.closePath();
   }
-
+ */
   //create background image
   ctx.drawImage(
     bgImage,
@@ -47,25 +47,30 @@ app.get("/og-image", async (req, res) => {
     bgImage.height * ratio
   );
 
-  // create black rectangle
+  /*   // create black rectangle
   ctx.rect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "#000000aa";
-  ctx.fill();
-
+  ctx.fill(); */
+  /* 
   //simple png
   const eagle = await loadImage("./eagle.png");
   ctx.drawImage(eagle, 900, 200, eagle.width / 2, eagle.height / 2);
-
+ */
   //rounded image
-  const bird2 = await loadImage("./bird2.jpg");
+  /*   const bird2 = await loadImage("./bird2.jpg");
   ctx.save();
   roundedRect(ctx, 0, 0, 336, 528, 1000);
   ctx.clip();
   ctx.drawImage(bird2, 0, 0, 336, 528);
   ctx.restore();
-  ctx.font = "48px serif";
-  ctx.fillText("Hello world", 10, 50);
-  ctx.fillText("2Hello world", 110, 150);
+  */
+
+  ctx.font = "248px serif";
+  ctx.fillStyle = "red";
+  ctx.fillText("Hello world", 3010, 2000);
+  ctx.fillText("2Hello world", 3210, 2200);
+  ctx.fillText("XXXXXXXXXXXXXXXXXXXHello world", 0, 0);
+
   canvas.createPNGStream().pipe(res);
 });
 
